@@ -1,5 +1,3 @@
-require "set"
-
 # O(n^2)
 def sluggish_octopus(fishes)
     max_fish = fishes.first
