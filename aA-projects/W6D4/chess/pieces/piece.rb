@@ -14,12 +14,17 @@ class Piece
     def to_s
         "#{symbol}"
     end 
-    
+
     def empty?
+        if self.is_a?(NullPiece)
+            true
+        else
+            false
+        end
     end 
     
     def valid_moves
-        
+        moves.select { |move| !move_into_check?(end_pos) }
     end    
     
     # def symbol
@@ -29,7 +34,8 @@ class Piece
     private 
 
     def move_into_check?(end_pos)
-        board.move_piece(pos, end_pos)
-        board.in_check?(color)
+        board_dupped = @board.dup
+        board_dupped.move_piece(pos, end_pos)
+        board_dupped.in_check?(color)
     end     
 end     

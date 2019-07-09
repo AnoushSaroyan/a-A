@@ -5,7 +5,7 @@ module Stepable
         x, y = pos
             move_diffs.each do |ele|
                 new_pos = [x + ele[0], y + ele[1]]
-                if valid_pos?(new_pos) && board[new_pos].color != color
+                if board.valid_pos?(new_pos) && board[new_pos].color != color
                     next_moves << new_pos
                 end 
             end

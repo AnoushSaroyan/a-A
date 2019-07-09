@@ -10,7 +10,7 @@ module Slideable
     def moves 
         next_moves = []
         y, x = pos
-            move_diffs.each do |ele|
+            move_dirs.each do |ele|
                 loop do 
                     new_pos = [y + ele[0], x + ele[1]]
                     

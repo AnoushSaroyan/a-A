@@ -7,7 +7,7 @@ class NullPiece < Piece
 
     def initialize
         @color = nil 
-        @symbol = "_"
+        @symbol = " "
     end    
     
     # doesn't have any moves

@@ -6,10 +6,10 @@ require_all 'pieces'
 class Board
     attr_reader :grid
 
-    def initialize
+    def initialize(fill = true)
         @grid = Array.new(8) { Array.new(8, NullPiece.instance) }
         # @sentinel = NullPiece.instance
-        fill_board
+        fill_board if fill
     end   
 
     def [](pos)
@@ -27,15 +27,14 @@ class Board
             raise "Please select a piece!"
         end  
         
-        piece = board[start_pos]
+        piece = self[start_pos]
         if piece.color != color
             raise "That is not your piece, please try again"
         end     
         
-        #TODO 
-        # check if the piece.moves include the end pos
-        # check for the valid movie
-
+        raise "not a valid move: moving into check" unless piece.valid_moves.include?(end_pos)
+        
+        move_piece!(color, start_pos, end_pos)
     end
 
     def valid_pos?(pos) # [x, y]
@@ -51,12 +50,37 @@ class Board
     end
 
     def checkmate?(color)
+        # our king doesn't have any pos that is not in check
+        return false unless in_check?(color)
+        
+        pieces.each do |piece|
+            moves = pieces.moves 
+            moves.each do |move|
+                new_board = self.dup
+                new_board.move_piece!(piece.color, piece.pos, move)
+                return false if !new_board.in_check?(color)
+            end     
+        end     
+        true
     end 
     
-    def in_check?(color)
+    def in_check?(color) # if our king's pos is included in opponents moves 
+        king_pos = find_king(color)
+        pieces.each do |piece|
+            # opponent's piece
+            if piece.color != color 
+                moves = piece.moves 
+                if moves.include?(king_pos) 
+                    return true 
+                end
+            end     
+        end   
+        false  
     end 
     
     def find_king(color)
+        piece_arr = pieces
+        piece_arr.select {|ele| ele.is_a?(King) && ele.color == color}
     end 
     
     def pieces 
@@ -64,10 +88,18 @@ class Board
     end 
     
     def dup 
-
+        new_board = Board.new(false)
+        pieces.each do |piece|
+            new_p = piece.class.new(piece.color, new_board, piece.pos)
+            new_board.add_piece(new_p, piece.pos)
+        end
+        new_board
     end 
     
     def move_piece!(color, start_pos, end_pos)
+        piece = self[start_pos]
+        self[start_pos] = NullPiece.instance
+        piece.pos = end_pos
     end    
     
 
