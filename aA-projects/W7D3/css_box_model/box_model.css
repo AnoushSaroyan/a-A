@@ -1,0 +1,28 @@
+#first-div, #second-div  {
+  height: 200px;
+  width: 200px;
+  padding: 50px;
+  border: 5px solid black;
+}
+
+#min-height{
+  min-height: 10px;
+  min-width: 10px;
+}
+/* div ~ p {
+    background-color: gold;
+} */
+
+
+#first-div {
+  background-color: #39cccc;
+}
+
+#second-div {
+  background-color: #ff4136;
+  box-sizing: border-box;
+}
+
+p {
+  background-color: #7fdbff;
+}
