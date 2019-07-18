@@ -9,7 +9,7 @@
 #
 
 class User < ApplicationRecord
-  
+
     has_many :enrollments,
         primary_key: :id,
         foreign_key: :student_id,
@@ -23,4 +23,17 @@ class User < ApplicationRecord
         primary_key: :id,
         foreign_key: :instructor_id,
         class_name: :Course
+
+     has_many :taught_students,
+        through: :taught_courses,
+        source: :enrolled_students
+
+     has_many :instructors, 
+        through: :enrolled_courses,
+        source: :instructor
+
+     has_many :students_with_common_instructors,
+        through: :instructors,
+        source: :taught_students
+
 end
