@@ -1,3 +1,5 @@
+require 'byebug'
+
 class SnackBox
   SNACK_BOX_DATA = {
     1 => {
@@ -52,7 +54,7 @@ class SnackBox
   end
 
   def get_bone_tastiness(box_id)
-    @data[box_id]["bone"]["tastiness"]
+    @data[box_id]["bone"]["tastiness"]     
   end
 
   def get_kibble_info(box_id)
@@ -103,18 +105,48 @@ class CorgiSnacks
 end
 
 
+# If we pass grep the argument /^get_(.*)_info$/, 
+# it will match any methods that are some variation of get_{snack}_info 
+# and "capture" the snack name - the (.*) tells it to capture any number of characters that come between get_ and _info.
+# We can then use $1 to get back the matching snack name that was captured.
+# So we can pass the block { MetaCorgiSnacks.define_snack $1 } to our grep call, 
+# and it will call ::define_snack with each snack name.
+
+# now we don't have to call MetaCorgiSnacks.define_snack("bone") first
+
+# pry(main)> load 'meta_corgis.rb'
+# pry(main)> snack_box = SnackBox.new
+# pry(main)> meta_snacks = MetaCorgiSnacks.new(snack_box, 1)
+# pry(main)> meta_snacks.bone # => "Bone: Phoenician rawhide: 20 "
+# pry(main)> meta_snacks.kibble # => "* Kibble: Delicately braised hamhocks: 33 "
+# pry(main)> meta_snacks.treat # => "Treat: Chewy dental sticks: 40 "
+
 class MetaCorgiSnacks
   def initialize(snack_box, box_id)
     @snack_box = snack_box
     @box_id = box_id
+    snack_box.methods.grep(/^get_(.*)_info$/) { MetaCorgiSnacks.define_snack $1 }
   end
 
-  def method_missing(name, *args)
-    # Your code goes here...
-  end
+  # def method_missing(name, *args)
+  #   # debugger
+  #   info = @snack_box.send("get_#{name}_info", @box_id)
+  #   tastiness = @snack_box.send("get_#{name}_tastiness", @box_id)
+  #   display_name = "#{name.to_s.capitalize}"
+  #   result = "#{name}: #{info}: #{tastiness} "
+  #   tastiness > 30 ? "* #{result}" : result
+  # end
 
 
   def self.define_snack(name)
-    # Your code goes here...
+    define_method(name) do
+      info = @snack_box.send("get_#{name}_info", @box_id)
+      tastiness = @snack_box.send("get_#{name}_tastiness", @box_id)
+      display_name = "#{name.capitalize}"
+      result = "#{display_name}: #{info}: #{tastiness}"
+      tastiness > 30 ? "* #{result}" : result
+    end
   end
+
 end
+
