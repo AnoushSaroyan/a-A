@@ -43,22 +43,19 @@ end
 def costars(name)
   # List the names of the actors that the named actor has ever
   # appeared with.
-  # Hint: use a subquery 812
-  # Actor 
-  #   .joins(:costars)
-  #   .where.not(actors: { name: :name })
-  #   .distinct
+  # Hint: use a subquery
 
-  Actor
-    .joins(:costars)
+  subquery = Movie.select(:id).joins(:actors).where(actors: { name: name })
+
+  Movie
+    .joins(:actors)
     .where.not(actors: { name: name })
+    .where(movies: { id: subquery })
     .distinct
     .pluck(:name)
 
-
     # Actor.joins(:costars).where(name: 'Julie Andrew').distinct.pluck(:name)
 end
-
 # SELECT "actors".* FROM "actors" INNER JOIN "castings" ON "actors"."id" = "castings"."actor_id" INNER JOIN "movies" ON "castings"."movie_id" = "movies"."id" INNER JOIN "castings" "castings_costars" ON "movies"."id" = "castings_costars"."movie_id" WHERE "castings_costars"."actor_id" = $1
 
 def actor_out_of_work
