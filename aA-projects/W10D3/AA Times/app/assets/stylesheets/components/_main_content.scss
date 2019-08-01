@@ -1,0 +1,30 @@
+.main-content{
+    display:flex
+}
+
+video{
+    width: auto;
+}
+
+.col1{
+    width: 33.3333333333333333333%
+}
+
+.col2{
+    display: flex;
+    width: 50%
+}
+
+// .col3{
+//     width: 50%;
+//     display: flex;
+// }
+
+
+.main-content a {
+    font-weight: bold;
+}
+
+.main-content a:hover {
+    text-decoration: underline;
+}

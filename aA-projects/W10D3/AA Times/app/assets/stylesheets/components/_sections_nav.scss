@@ -1,0 +1,33 @@
+.sections-nav {
+	// display: flex;
+    font-family: $sans-serif;
+    border-bottom: 1px solid $light-gray;
+}
+
+.sections-nav ul{
+    display: flex;
+    justify-content: center;
+}
+
+.sections-nav ul li {
+    margin: 0 10px;
+}
+
+.sections-nav ul li:hover{
+    background-color: $gray;
+}
+
+.sections-nav ul li:hover:last-of-type{
+    text-decoration: underline;
+    background-color: white;
+}
+
+.sections-nav a {
+    text-transform: capitalize;
+}
+
+@media all and (max-width: 1000px) {
+  .sections-nav {
+  	display: none;
+  }
+}
