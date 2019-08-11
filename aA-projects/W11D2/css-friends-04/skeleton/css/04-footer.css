@@ -1,0 +1,31 @@
+/* PHASE 4: Footer */
+.footer-top{
+   margin: 0 auto 100px auto;
+   display: flex;
+   background: #fff;
+   justify-content: space-evenly;
+   width: 900px;
+   color: darkgray;
+   font-size: 16px;
+   font-family: sans-serif;
+   border-bottom: 1px solid darkgray;
+   border-left: 1px solid darkgray;
+   border-right: 1px solid darkgray;
+   border-bottom-right-radius: 5px;
+   border-bottom-left-radius: 5px;
+}
+
+.footer-top > small {
+   display: block;
+   padding: 20px;
+   float: left;
+}
+
+.footer-tags {
+    display: flex;
+    padding: 20px;
+}
+
+.footer-tags li {
+    padding-left: 20px; 
+}
