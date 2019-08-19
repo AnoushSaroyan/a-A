@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+div {
+    display: block;
+}
+
+.clock {
+    font-family: sans-serif;
+    color: white;
+    margin: 0 20 20 20;
+    background: orange;
+    padding: 10px;
+    border: 2px solid black;
+    width: 550px;
+    height: 94px;
+    font-size: 25px;
+    background-position-y: 20%
+}
+.clock p {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 20px 10px 10px 0;
+}
