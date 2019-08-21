@@ -1,0 +1,40 @@
+/* html, body, div {
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  background: transparent;
+} */
+#root {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.board {
+  display: flex;
+}
+
+.tile {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  background: lightgray;
+  float: left;
+  border-width: 2px;
+  padding-left: 3px;
+  border-style: outset;
+  border-width: 2px;
+}
+
+.explored {
+    border-style: inset;
+}
+/* .flagged {
+  color: red;
+} */
+/* .row {
+    width: 250px;
+    margin: 0 auto;
+} */
+
