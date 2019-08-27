@@ -1,0 +1,377 @@
+// Place all the styles related to the api/Pokemon controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#loading-pokeball-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+#loading-pokeball {
+    height: 50vmin;
+    width: 50vmin;
+    background-color: #d43316;
+    border-radius: 50%;
+    border: 2vmin solid black;
+    -webkit-animation: spin 1.5s infinite;
+    animation: spin 1.5s infinite
+}
+
+#loading-pokeball::after {
+    content: "";
+    background: white;
+    background: -moz-radial-gradient(center, ellipse cover, grey 25%, #fff 25%);
+    background: -webkit-radial-gradient(center, ellipse cover, grey 25%, #fff 25%);
+    background: radial-gradient(ellipse at center, grey 25%, #fff 25%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='grey', endColorstr='white',GradientType=1 );
+    border: 2vmin solid black;
+    height: 12.5vmin;
+    width: 12.5vmin;
+    top: 16.5vmin;
+    left: 30vmin;
+    z-index: 2;
+    position: absolute;
+    border-radius: 100%
+}
+
+#loading-pokeball::before {
+    content: "";
+    background-color: white;
+    z-index: 1;
+    height: 25vmin;
+    width: 49.75vmin;
+    position: absolute;
+    top: 23vmin;
+    left: -1.72vmin;
+    border-radius: 0 0 50vmin 50vmin;
+    border: 2vmin solid black
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotateX(0deg) rotate(0deg)
+    }
+
+    50% {
+        -webkit-transform: rotateX(360deg) rotate(-180deg)
+    }
+
+    100% {
+        -webkit-transform: rotateX(720deg) rotate(0deg)
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotateX(0deg) rotate(0deg)
+    }
+
+    50% {
+        transform: rotateX(360deg) rotate(-180deg)
+    }
+
+    100% {
+        transform: rotateX(720deg) rotate(0deg)
+    }
+}
+
+.pokedex {
+    display: flex;
+    align-items: flex-start;
+    padding: 0;
+    height: 100%;
+    background-color: white
+}
+
+.pokedex>ul {
+    padding: 0 10px 0 0;
+    width: 300px;
+    height: calc(100% - 20px);
+    overflow: scroll
+}
+
+.pokedex>ul>li a {
+    display: block
+}
+
+.pokedex>ul>li:active {
+    background-color: #d43316
+}
+
+.pokemon {
+    padding: 5px 10px;
+    border-bottom: 1px solid #747474;
+    cursor: pointer
+}
+
+.pokemon:hover {
+    background-color: #999999
+}
+
+.pokemon img {
+    width: 20px;
+    margin: 0 10px;
+    vertical-align: middle
+}
+
+.pokemon a {
+    text-decoration: none;
+    color: black
+}
+
+.pokemon a:active {
+    background-color: #d43316
+}
+
+.pokemon:first-of-type {
+    border-top: 1px solid grey
+}
+
+.pokemon-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+    border-radius: 20px;
+    border: 6px solid black;
+    margin: 10px 40px;
+    padding: 20px;
+    overflow: scroll;
+    background-color: #999999
+}
+
+.pokemon-detail figure {
+    border: 4px solid black;
+    border-radius: 8px;
+    width: 80%;
+    padding: 20px;
+    max-height: 400px;
+    background: red;
+    background: -webkit-linear-gradient(315deg, #d43316, #ff0);
+    background: -o-linear-gradient(315deg, #d43316, #ff0);
+    background: -moz-linear-gradient(315deg, #d43316, #ff0);
+    background: linear-gradient(315deg, #d43316, #ff0)
+}
+
+.pokemon-detail figure img {
+    width: 100%;
+    max-height: 380px
+}
+
+.pokemon-detail ul {
+    text-align: center
+}
+
+.pokemon-detail ul li {
+    font-size: 20px;
+    padding: 10px 0;
+    color: #161616
+}
+
+.pokemon-detail .error {
+    color: #d43316;
+    font-size: 12px;
+    font-style: bold
+}
+
+.pokemon-form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: scroll
+}
+
+.pokemon-form input,.pokemon-form select,.pokemon-form button {
+    margin: 20px 0;
+    background: none;
+    border: 0;
+    border-radius: 0px;
+    -webkit-appearance: none;
+    font-size: 16px;
+    border-bottom: 1px solid #161616
+}
+
+.pokemon-form button {
+    background: #d43316;
+    color: white;
+    font-weight: bold;
+    padding: 10px 0;
+    border: none;
+    cursor: pointer;
+    margin: 0
+}
+
+.pokemon-form select {
+    cursor: pointer
+}
+
+.items-section {
+    margin-top: 25px;
+    padding: 10px;
+    border: 4px solid black;
+    border-radius: 8px;
+    background-color: #F6F6F6;
+    background-image: radial-gradient(circle at 100% 150%, #F6F6F6 24%, #fff 25%, #fff 28%, #F6F6F6 29%, #F6F6F6 36%, #fff 36%, #fff 40%, transparent 40%, transparent),radial-gradient(circle at 0 150%, #F6F6F6 24%, #fff 25%, #fff 28%, #F6F6F6 29%, #F6F6F6 36%, #fff 36%, #fff 40%, transparent 40%, transparent),radial-gradient(circle at 50% 100%, #fff 10%, #F6F6F6 11%, #F6F6F6 23%, #fff 24%, #fff 30%, #F6F6F6 31%, #F6F6F6 43%, #fff 44%, #fff 50%, #F6F6F6 51%, #F6F6F6 63%, #fff 64%, #fff 71%, transparent 71%, transparent),radial-gradient(circle at 100% 50%, #fff 5%, #F6F6F6 6%, #F6F6F6 15%, #fff 16%, #fff 20%, #F6F6F6 21%, #F6F6F6 30%, #fff 31%, #fff 35%, #F6F6F6 36%, #F6F6F6 45%, #fff 46%, #fff 49%, transparent 50%, transparent),radial-gradient(circle at 0 50%, #fff 5%, #F6F6F6 6%, #F6F6F6 15%, #fff 16%, #fff 20%, #F6F6F6 21%, #F6F6F6 30%, #fff 31%, #fff 35%, #F6F6F6 36%, #F6F6F6 45%, #fff 46%, #fff 49%, transparent 50%, transparent);
+    background-size: 100px 50px
+}
+
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    border: 4px solid black;
+    border-radius: 8px;
+    background-color: white
+}
+
+.items li {
+    margin: 15px;
+    flex: 1
+}
+
+.items li img {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%
+}
+
+.items li img:hover {
+    box-shadow: 1px 1px 5px black;
+    -webkit-filter: sepia(50%)
+}
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline
+}
+
+:focus {
+    outline: 0
+}
+
+body {
+    line-height: 1;
+    color: black;
+    background: white
+}
+
+ol,ul {
+    list-style: none
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0
+}
+
+caption,th,td {
+    text-align: left;
+    font-weight: normal
+}
+
+blockquote:before,blockquote:after,q:before,q:after {
+    content: ""
+}
+
+blockquote,q {
+    quotes: "" ""
+}
+
+html {
+    height: 100%
+}
+
+body {
+    font-family: sans-serif;
+    background: white;
+    color: #747474;
+    font-size: 12px;
+    height: 100%
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    background-color: #d43316
+}
+
+header img {
+    width: 43px;
+    height: auto
+}
+
+nav {
+    width: 900px;
+    background-color: #d43316;
+    padding: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+nav ul {
+    display: flex;
+    justify-content: flex-end
+}
+
+nav ul li a {
+    background-color: white;
+    border-radius: 4px;
+    color: #747474;
+    font-weight: 700;
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    -webkit-transition: box-shadow 0.1s ease-out, background-color 0.1s ease-in-out;
+    -moz-transition: box-shadow 0.1s ease-out, background-color 0.1s ease-in-out;
+    -ms-transition: box-shadow 0.1s ease-out, background-color 0.1s ease-in-out;
+    -o-transition: box-shadow 0.1s ease-out, background-color 0.1s ease-in-out;
+    transition: box-shadow 0.1s ease-out, background-color 0.1s ease-in-out
+}
+
+nav ul li a:hover {
+    color: #999999;
+    -webkit-box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.75)
+}
+
+nav ul li a:active {
+    background-color: #999999;
+    color: white;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none
+}
+
+#root {
+    height: 100%;
+    padding-top: 20px
+}
+
+h2 {
+    font-size: 32px
+}
+
+h3 {
+    font-size: 24px;
+    text-align: center;
+    color: #161616
+}
+
